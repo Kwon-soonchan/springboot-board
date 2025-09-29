@@ -7,10 +7,19 @@
 <body>
 <form th:action="@{|/update/${board.id}|}" method="post" name="updateForm">
     <input type="hidden" name="id" th:value="${board.id}">
-    writer: <input type="text" name="boardWriter" th:value="${board.boardWriter}" readonly><br>
-    title: <input type="text" name="boardTitle" th:value="${board.boardTitle}"><br>
-    pass: <input type="text" name="boardPass" id="board-pass"><br>
-    contents: <textarea name="boardContents" cols="30" rows="10" th:text="${board.boardContents}"></textarea><br>
+
+    <label for="board-writer">writer: </label>
+    <input type="text" id="board-writer" name="boardWriter" th:value="${board.boardWriter}" readonly><br>
+
+    <label for="board-title">title: </label>
+    <input type="text" id="board-title" name="boardTitle" th:value="${board.boardTitle}"><br>
+
+    <label for="board-pass">pass: </label>
+    <input type="text" name="boardPass" id="board-pass"><br>
+
+    <label for="board-contents">contents: </label>
+    <textarea id="board-contents" name="boardContents" cols="30" rows="10" th:text="${board.boardContents}"></textarea><br>
+
     <input type="button" value="수정" onclick="board_update()">
 </form>
 </body>
@@ -18,7 +27,7 @@
     const board_update = () => {
         const boardPass = document.getElementById("board-pass").value;
         const passDB = '[[${board.boardPass}]]';
-        if (boardPass == passDB) {
+        if (boardPass === passDB) {
             updateForm.submit();
         } else {
             alert("비밀번호가 틀립니다!!");
