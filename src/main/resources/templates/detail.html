@@ -28,8 +28,12 @@
         <td th:text="${board.boardWriter}"></td>
     </tr>
     <tr>
-        <th>date</th>
+        <th>date(first)</th>
         <td th:text="${board.createdAt}"></td>
+    </tr>
+    <tr>
+        <th>date(update)</th>
+        <td th:text="${board.updatedAt}"></td>
     </tr>
     <tr>
         <th>hits</th>
@@ -49,10 +53,10 @@
         location.href = "/list";
     }
     const updateReq = () => {
-
+        location.href = `/update/[[${board.id}]]`;
     }
     const deleteReq = () => {
-
+        location.href = `/delete/[[${board.id}]]`;
     }
 </script>
 </html>

@@ -9,7 +9,7 @@
     </insert>
 
     <select id="findAll" resultType="board">
-        select id, boardTitle, boardWriter, boardHits, date_format(createdAt, "%Y-%m-%d") as createdAt
+        select id, boardTitle, boardWriter, boardHits, createdAt, updatedAt
             from board_table
             order by id desc
     </select>
@@ -21,8 +21,20 @@
     </update>
 
     <select id="findById" parameterType="Long" resultType="board">
-        select id, boardTitle, boardWriter, boardPass, boardContents, boardHits, date_format(createdAt, "%Y-%m-%d") as createdAt
+        select id, boardTitle, boardWriter, boardPass, boardContents, boardHits, createdAt, updatedAt
         from board_table
         where id=#{id}
     </select>
+
+    <update id="update" parameterType="board">
+        update board_table
+        set boardTitle=#{boardTitle}, boardContents=#{boardContents}, updatedAt=#{updatedAt}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete
+        from board_table
+        where id=#{id}
+    </delete>
 </mapper>

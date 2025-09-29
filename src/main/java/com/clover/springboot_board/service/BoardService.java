@@ -5,6 +5,7 @@ import com.clover.springboot_board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -27,5 +28,15 @@ public class BoardService {
 
     public BoardDTO findById(Long id) {
         return boardRepository.findById(id);
+    }
+
+    public void update(BoardDTO boardDTO) {
+        // 게시글 수정시간 반영
+        boardDTO.setUpdatedAt(LocalDateTime.now());
+        boardRepository.update(boardDTO);
+    }
+
+    public void delete(Long id) {
+        boardRepository.delete(id);
     }
 }
