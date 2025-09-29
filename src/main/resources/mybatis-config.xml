@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--축약어로 클래스를 읽어올 수 있도록 하는게 typealiases이다-->
+    <typeAliases>
+        <!--클래스 alias가 들어갈 공간-->
+        <typeAlias type="com.clover.springboot_board.dto.BoardDTO" alias="board"></typeAlias>
+        <!--indexController예시-->
+    </typeAliases>
+</configuration>
