@@ -6,6 +6,7 @@
     <typeAliases>
         <!--클래스 alias가 들어갈 공간-->
         <typeAlias type="com.clover.springboot_board.dto.BoardDTO" alias="board"></typeAlias>
+        <typeAlias type="com.clover.springboot_board.dto.BoardFileDTO" alias="boardFile"></typeAlias>
         <!--indexController예시-->
     </typeAliases>
 </configuration>

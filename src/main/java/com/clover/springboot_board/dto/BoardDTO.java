@@ -3,8 +3,10 @@ package com.clover.springboot_board.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Setter
 @Getter
@@ -19,4 +21,6 @@ public class BoardDTO {
     private int boardHits;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private int fileAttached;
+    private List<MultipartFile> boardFile;
 }

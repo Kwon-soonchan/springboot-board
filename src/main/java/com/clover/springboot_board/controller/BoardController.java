@@ -1,6 +1,7 @@
 package com.clover.springboot_board.controller;
 
 import com.clover.springboot_board.dto.BoardDTO;
+import com.clover.springboot_board.dto.BoardFileDTO;
 import com.clover.springboot_board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -23,7 +25,7 @@ public class BoardController {
     }
 
     @PostMapping("/save")
-    public String save(BoardDTO boardDTO) {
+    public String save(BoardDTO boardDTO) throws IOException {
         boardService.save(boardDTO);
         return "redirect:/list";
     }
@@ -43,6 +45,12 @@ public class BoardController {
         //게시글내용 가져오기
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
+
+        if(boardDTO.getFileAttached() == 1) {
+            List<BoardFileDTO> boardFileDTOList = boardService.findFile(id);
+            model.addAttribute("boardFileDTOList", boardFileDTOList);
+        }
+
         return "detail";
     }
 
@@ -62,6 +70,12 @@ public class BoardController {
         // findById로 수정된 내용을 다시 조회
         BoardDTO dto = boardService.findById(boardDTO.getId());
         model.addAttribute("board", dto);
+
+        if (dto.getFileAttached() == 1) {
+            List<BoardFileDTO> boardFileDTOList = boardService.findFile(dto.getId());
+            model.addAttribute("boardFileDTOList", boardFileDTOList);
+        }
+
         return "detail";
     }
 

@@ -1,6 +1,7 @@
 package com.clover.springboot_board.repository;
 
 import com.clover.springboot_board.dto.BoardDTO;
+import com.clover.springboot_board.dto.BoardFileDTO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,10 @@ public class BoardRepository {
     // mybatis를 쓰기 위한 객체
     private final SqlSessionTemplate sql;
 
-    public void save(BoardDTO boardDTO) {
+    public BoardDTO save(BoardDTO boardDTO) {
         sql.insert("Board.save", boardDTO);
+
+        return boardDTO;
     }
 
     public List<BoardDTO> findAll() {
@@ -35,5 +38,13 @@ public class BoardRepository {
 
     public void delete(Long id) {
         sql.delete("Board.delete", id);
+    }
+
+    public void saveFile(BoardFileDTO boardFileDTO) {
+        sql.insert("Board.saveFile", boardFileDTO);
+    }
+
+    public List<BoardFileDTO> findFile(Long id) {
+        return sql.selectList("Board.findFile", id);
     }
 }
